@@ -20,14 +20,14 @@ import br.com.casadocodigo.loja.models.Product;
 import br.com.casadocodigo.loja.validations.ProductValidator;
 
 @Controller
-@RequestMapping("products")
+@RequestMapping("/products")
 public class ProductsController {
 
 	@Autowired
 	private ProductDAO productDAO;
 	
 	@RequestMapping(value = "/form", method = RequestMethod.GET)
-	public ModelAndView form(){
+	public ModelAndView form(Product product){
 		ModelAndView modelAndView = new ModelAndView("/products/form");
 		modelAndView.addObject("types", BookType.values());
 		return modelAndView;
@@ -37,7 +37,7 @@ public class ProductsController {
 	@Transactional
 	public ModelAndView save(@Valid Product product, BindingResult bindingResult, RedirectAttributes attr){
 		if (bindingResult.hasErrors()) {
-			return form();	
+			return form(product);	
 		}
 		productDAO.save(product);
 		attr.addAttribute("SUCCESS", "Item criado com sucesso!");
@@ -52,8 +52,8 @@ public class ProductsController {
 		return view;
 	}
 	
-	@InitBinder
-	public void initBinder(WebDataBinder binder){
-		binder.addValidators(new ProductValidator());
-	}
+	//@InitBinder
+//	public void initBinder(WebDataBinder binder){
+//		binder.addValidators(new ProductValidator());
+//	}
 }
