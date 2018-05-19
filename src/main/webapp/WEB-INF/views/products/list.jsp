@@ -17,6 +17,7 @@ ${SUCCESS}
 			<th>Preço - Ebook</th>
 			<th>Preço - Printed</th>
 			<th>Preço - Combo</th>
+			<th>Detalhes</th>
 		</tr>
 		
 			<c:forEach items="${products}" var="product" varStatus="status">
@@ -27,6 +28,10 @@ ${SUCCESS}
 					<c:forEach items="${product.prices}" var="price" varStatus="status">
 						<td>R$ ${price.value}</td>
 					</c:forEach>
+					<td>
+						<c:url value="/products/${product.id}" var="linkDetalhar" />
+						<a href="${linkDetalhar }">Detalhar</a>
+					</td>
 				</tr>
 			</c:forEach>
 		

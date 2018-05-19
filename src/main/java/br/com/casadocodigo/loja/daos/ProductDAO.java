@@ -22,4 +22,11 @@ public class ProductDAO {
 	public List<Product> list(){
 		return manager.createQuery("SELECT distinct P FROM Product P join fetch P.prices ").getResultList();
 	}
+
+	public Product find(Integer id) {
+		return manager.createQuery("select distinct(p) from Product p join fetch p.prices "
+				+ "where p.id = :id", Product.class)
+				.setParameter("id", id)
+				.getSingleResult();
+	}
 }
