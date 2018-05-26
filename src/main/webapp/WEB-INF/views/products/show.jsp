@@ -61,24 +61,31 @@
 			</li>
 			<li class="category">
 				<a href="/collections/livros-de-agile">Agile</a>
+				<fmt:message key="navigation.category.agile"/>
 			</li>
 			<li class="category">
 				<a href="/collections/livros-de-front-end">Front End</a>
+				<fmt:message key="navigation.category.front"/>
 			</li>
 			<li class="category">
 				<a href="/collections/livros-de-games">Games</a>
+				<fmt:message key="navigation.category.games"/>
 			</li>
 			<li class="category">
 				<a href="/collections/livros-de-java">Java</a>
+				<fmt:message key="navigation.category.java"/>
 			</li>
 			<li class="category">
 				<a href="/collections/livros-de-mobile">Mobile</a>
+				<fmt:message key="navigation.category.mobile"/>
 			</li>
 			<li class="category">
 				<a href="/collections/livros-desenvolvimento-web">Web</a>
+				<fmt:message key="navigation.category.web"/>
 			</li>
 			<li class="category">
 				<a href="/collections/outros">Outros</a>
+				<fmt:message key="navigation.category.others"/>
 			</li>
 		</ul>
 	</nav>
@@ -100,7 +107,8 @@
 		</header>
 		
 		<section class="buy-options clearfix">
-			<form action="${shoppingCartUrl}" method="post" class="container">
+
+			<form:form servletRelativeAction="/shopping" method="post" cssClass="container">
 				<input type="hidden" value="${product.id}" name="productId"/>
 				<ul id="variants" class="clearfix">
 					<c:forEach items="${product.prices}" var="price">
@@ -117,7 +125,7 @@
 				</ul>
 
 				<input type="submit" class="submit-image icon-basket-alt" alt="Compre agora" title="Compre agora '${product.title}'!" value="comprar"/>
-			</form>
+			</form:form>
 		</section>
 
 		<div class="container">
@@ -214,8 +222,8 @@
 				<!-- social-footer -->
 				<p class="footer-title">Receba as Novidades e Lançamentos</p>
 				<div id="form-newsletter">
-					<form action="https://docs.google.com/spreadsheet/formResponse?formkey=dFhxZ2tDalFiclU4T2FLZVY4UXVUc2c6MQ&embedded=true&ifq"
-						method="POST" id="ss-form" class="form-newsletter">
+					<form:form servletRelativeAction="/shopping/checkout" 
+						method="POST" id="ss-form" cssClass="container">
 						<ul>
 							<li>
 								<input type="hidden" name="pageNumber" value="0">
@@ -223,10 +231,10 @@
 								<input type="email" name="entry.0.single" value="" class="ss-q-short" id="entry_0" placeholder="seu@email.com">
 							</li>
 							<li>
-								<input type="submit" name="submit" value="Quero Receber!" id="submit-newsletter">
+								<input type="submit" class="checkout" name="checkout" value="Finalizar compra" id="checkout"/>
 							</li>
 						</ul>
-					</form>
+					</form:form>
 					
 					<ul>
 						<li class="ie8">
